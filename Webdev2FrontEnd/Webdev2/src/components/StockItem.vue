@@ -11,6 +11,8 @@
                 >
                     {{ currency }} {{ price.toFixed(4) }}
                 </span>
+                <input type="number" name="amount" id="amount" placeholder="amount" v-model="amount">
+                <button class="button is-primary" @click="$emit('buy', name, amount)">Buy</button>
             </div>
         </div>
     </div>

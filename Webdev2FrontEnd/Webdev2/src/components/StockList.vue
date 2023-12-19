@@ -1,7 +1,7 @@
 <template>
     <h1 class="pt-5">Stock list</h1>
     <div class="row">
-        <stock-item v-for="stock in stocks" :key="stock.name" :name="stock.name" :currency="stock.currency" :price="stock.price" :previousPrice="stock.previousPrice"></stock-item>
+        <stock-item v-for="stock in stocks" :key="stock.name" :name="stock.name" :currency="stock.currency" :price="stock.price" :previousPrice="stock.previousPrice" @buy="buyItem"></stock-item>
     </div>
 </template>
 
@@ -24,6 +24,9 @@ export default {
         };
     },
     methods: {
+        buyItem(amount) {
+            alert(amount);//here
+        },
         updatePrices() {
             this.stocks.forEach((stock) => {
                 stock.previousPrice = stock.price;
@@ -37,7 +40,7 @@ export default {
     mounted() {
         setInterval(() => {
             this.updatePrices();
-        }, 5000);
+        }, 2500);
     },
 };
 </script>
