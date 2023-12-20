@@ -60,8 +60,9 @@
 
 body {
   min-height: 100vh;
-  color: var(--color-text);
-  background: var(--color-background);
+  /* color: var(--color-text); */
+  /* background: var(--color-background); */
+  background-color: #ededed;
   transition:
     color 0.5s,
     background-color 0.5s;
@@ -83,4 +84,13 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+a.nav-link{
+  transition: all 0.3s;
+}
+
+a.nav-link:hover{
+  font-weight: bold;
+  font-size: 0.85rem;
 }

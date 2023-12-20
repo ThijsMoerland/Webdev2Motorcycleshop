@@ -9,10 +9,10 @@
                         up: price > previousPrice,
                     }"
                 >
-                    {{ currency }} {{ price.toFixed(4) }}
+                    {{ currency }} {{ price.toFixed(2) }}
                 </span>
-                <input type="number" name="amount" id="amount" placeholder="amount" v-model="amount">
-                <button class="button is-primary" @click="$emit('buy', name, amount)">Buy</button>
+                <input type="number" name="amount" id="amount" class="form-control" placeholder="amount" v-model="amount">
+                <button class="btn btn-primary" @click="$emit('buy', name, amount, price, currency)">Buy</button>
             </div>
         </div>
     </div>
@@ -20,7 +20,7 @@
 
 <script>
 export default {
-    name: "StockItem",
+    name: "MotorcycleItem",
     props: {
         name: String,
         currency: String,
