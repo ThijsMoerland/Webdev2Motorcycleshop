@@ -7,6 +7,7 @@
 
 <script>
 import MotorcycleItem from './MotorcycleItem.vue';
+// import CreateMotorcycle from './admin/createMotorcycle.vue';
 
 export default {
     name: "MotorcycleList",
@@ -14,6 +15,7 @@ export default {
         MotorcycleItem,
     },
     data() {
+        console.log();
         return {
             motorcycles: [
                 { name: "BMW", price: 61.05, previousPrice: 0, currency: "€" },
@@ -30,13 +32,16 @@ export default {
             }
         },
         updatePrices() {
-            this.motorcycles.forEach((motorcycles) => {
-                motorcycles.previousPrice = motorcycles.price;
-                motorcycles.price += (Math.random() - 0.5) * 2;
-                if (motorcycles.price < 0) {
-                    motorcycles.price = 0;
+            this.motorcycles.forEach((motorcycle) => {
+                motorcycle.previousPrice = motorcycle.price;
+                motorcycle.price += (Math.random() - 0.5) * 2;
+                if (motorcycle.price < 0) {
+                    motorcycle.price = 0;
                 }
             });
+        },
+        addMotorcycle(motorcycle) {
+            this.motorcycles.push(motorcycle);
         },
     },  
     mounted() {
@@ -49,4 +54,3 @@ export default {
 
 <style scoped>
 </style>
-

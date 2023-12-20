@@ -1,5 +1,5 @@
 <template>
-    <div class="col-md-4 mt-4">
+    <div class="col-12 col-sm-6 col-lg-4 mt-4">
         <div class="card">
             <div class="card-body">
                 <td>{{ name }}</td>
