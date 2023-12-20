@@ -44,7 +44,7 @@ export default {
     methods: {
         addMotorcycle() {
             // Logic to add the motorcycle
-            this.$emit("addMotorcycle", this.motorcycle);
+            alert("Motorcycle added!");
             this.$router.push("/"); // Replace "/home" with the actual path to your home component
         },
     },

@@ -7,7 +7,6 @@
 
 <script>
 import MotorcycleItem from './MotorcycleItem.vue';
-// import CreateMotorcycle from './admin/createMotorcycle.vue';
 
 export default {
     name: "MotorcycleList",
@@ -39,9 +38,6 @@ export default {
                     motorcycle.price = 0;
                 }
             });
-        },
-        addMotorcycle(motorcycle) {
-            this.motorcycles.push(motorcycle);
         },
     },  
     mounted() {
