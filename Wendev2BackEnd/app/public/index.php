@@ -13,10 +13,10 @@ $router = new \Bramus\Router\Router();
 $router->setNamespace('Controllers');
 
 // routes for the articles endpoint
-$router->get('/products', 'ProductController@getAll');
+$router->get('/motorcycles', 'MotorcycleController@getAll');
 $router->get('/products/(\d+)', 'ProductController@getOne');
 $router->put('/products/(\d+)', 'ProductController@update');
-$router->post('/products', 'ProductController@create');
+$router->post('/products' , 'ProductController@create');
 $router->delete('/products/(\d+)', 'ProductController@delete');
 
 // Run it!
