@@ -14,10 +14,10 @@ $router->setNamespace('Controllers');
 
 // routes for the articles endpoint
 $router->get('/motorcycles', 'MotorcycleController@getAll');
-$router->get('/products/(\d+)', 'ProductController@getOne');
-$router->put('/products/(\d+)', 'ProductController@update');
-$router->post('/products' , 'ProductController@create');
-$router->delete('/products/(\d+)', 'ProductController@delete');
+$router->get('/motorcycles/(\d+)', 'MotorcycleController@getOne');
+$router->put('/motorcycles/(\d+)', 'MotorcycleController@update');
+$router->post('/motorcycles' , 'MotorcycleController@create');
+$router->delete('/motorcycles/(\d+)', 'MotorcycleController@delete');
 
 // Run it!
 $router->run();

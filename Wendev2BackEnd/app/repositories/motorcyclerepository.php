@@ -47,30 +47,61 @@ class MotorcycleRepository extends Repository
         }
     }
 
-    function insert($product)
+    function insert($motorcycle)
     {
+    
         try {
-            $stmt = $this->connection->prepare("INSERT into product (name, price, description, image, category_id) VALUES (?,?,?,?,?)");
-
-            $stmt->execute([$product->name, $product->price, $product->description, $product->image, $product->category_id]);
-
-            $product->id = $this->connection->lastInsertId();
-
-            return $product;
+            $stmt = $this->connection->prepare("INSERT INTO `motorcycles`(`brand`, `type`, `constructionYear`, `price`, `power`, `mass`, `engine`, `accessories`, `img_url`, `sold`)
+            VALUES (:brand, :type, :constructionYear, :price, :power, :mass, :engine, :accessories, :img_url, 0)");
+            $stmt->bindParam(':brand', $motorcycle->brand);
+            $stmt->bindParam(':type', $motorcycle->type);
+            $stmt->bindParam(':constructionYear', $motorcycle->constructionYear);
+            $stmt->bindParam(':price', $motorcycle->price);
+            $stmt->bindParam(':power', $motorcycle->power);
+            $stmt->bindParam(':mass', $motorcycle->mass);
+            $stmt->bindParam(':engine', $motorcycle->engine);
+            $stmt->bindParam(':accessories', $motorcycle->accessories);
+            $stmt->bindParam(':img_url', $motorcycle->img_url);
+            $stmt->execute();
+            
+            $motorcycle->id = $this->connection->lastInsertId();
+            
+            return $motorcycle;
         } catch (PDOException $e) {
-            // echo $e;
+            print_r($e);
         }
     }
 
 
-    function update($product, $id)
+    function update($motorcycle, $id)
     {
         try {
-            $stmt = $this->connection->prepare("UPDATE product SET name = ?, price = ?, description = ?, image = ?, category_id = ? WHERE id = ?");
+            $stmt = $this->connection->prepare("UPDATE `motorcycles` SET 
+            `brand` = :brand, 
+            `type` = :type, 
+            `constructionYear` = :constructionYear, 
+            `price` = :price, 
+            `power` = :power, 
+            `mass` = :mass, 
+            `engine` = :engine, 
+            `accessories` = :accessories, 
+            `img_url` = :img_url 
+            WHERE `id` = :id");
 
-            $stmt->execute([$product->name, $product->price, $product->description, $product->image, $product->category_id, $id]);
+        $stmt->bindParam(':brand', $motorcycle->brand);
+        $stmt->bindParam(':type', $motorcycle->type);
+        $stmt->bindParam(':constructionYear', $motorcycle->constructionYear);
+        $stmt->bindParam(':price', $motorcycle->price);
+        $stmt->bindParam(':power', $motorcycle->power);
+        $stmt->bindParam(':mass', $motorcycle->mass);
+        $stmt->bindParam(':engine', $motorcycle->engine);
+        $stmt->bindParam(':accessories', $motorcycle->accessories);
+        $stmt->bindParam(':img_url', $motorcycle->img_url);
+        $stmt->bindParam(':id', $id);
 
-            return $product;
+        $stmt->execute();
+
+        return $motorcycle;
         } catch (PDOException $e) {
             echo $e;
         }
@@ -79,7 +110,7 @@ class MotorcycleRepository extends Repository
     function delete($id)
     {
         try {
-            $stmt = $this->connection->prepare("DELETE FROM product WHERE id = :id");
+            $stmt = $this->connection->prepare("DELETE FROM motorcycles WHERE id = :id");
             $stmt->bindParam(':id', $id);
             $stmt->execute();
             return;

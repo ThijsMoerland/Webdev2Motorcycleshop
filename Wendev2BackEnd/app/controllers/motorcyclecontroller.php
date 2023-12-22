@@ -18,8 +18,6 @@ class MotorcycleController extends Controller
 
     public function getAll()
     {
-        print_r('test');
-        die();
         // Get the limit and offset values from the query string
         $limit = isset($_GET['limit']) ? $_GET['limit'] : null;
         $offset = isset($_GET['offset']) ? $_GET['offset'] : null;
@@ -77,6 +75,7 @@ class MotorcycleController extends Controller
     {
         try {
             $this->service->delete($id);
+            $this->respond(true);
         } catch (Exception $e) {
             $this->respondWithError(500, $e->getMessage());
         }
