@@ -1,12 +1,13 @@
 <template>
     <h1 class="pt-5">Motorcycles</h1>
     <div class="row">
-        <MotorcycleItem v-for="motorcycle in motorcycles" :key="motorcycle.name" :name="motorcycle.name" :currency="motorcycle.currency" :price="motorcycle.price" :previousPrice="motorcycle.previousPrice" @buy="buyItem"></MotorcycleItem>
+        <MotorcycleItem v-for="motorcycle in motorcycles" :key="motorcycle.id" :brand="motorcycle.brand" :type="motorcycle.type" :price="motorcycle.price" :constructionYear="motorcycle.constructionYear" :power="motorcycle.power" :mass="motorcycle.mass" :engine="motorcycle.engine" :accessories="motorcycle.accessories" :imgUrl="motorcycle.img_url" :sold="motorcycle.sold" @buy="buyItem"></MotorcycleItem>
     </div>
 </template>
 
 <script>
 import MotorcycleItem from './MotorcycleItem.vue';
+import axios from 'axios';
 
 export default {
     name: "MotorcycleList",
@@ -16,34 +17,26 @@ export default {
     data() {
         console.log();
         return {
-            motorcycles: [
-                { name: "BMW", price: 61.05, previousPrice: 0, currency: "€" },
-                { name: "Kawasaki", price: 146.49, previousPrice: 0, currency: "$" },
-                { name: "Yamaha", price: 76.5, previousPrice: 0, currency: "$" },
-                { name: "Suzuki", price: 4.583, previousPrice: 0, currency: "$" },
-            ],
+            motorcycles: [ ],
         };
     },
     methods: {
-        buyItem(name, amount, price, currency) {
+        buyItem(brand, type, amount, price) {
             if(amount > 0){
-                alert(name+': '+amount+'     '+currency+amount*price.toFixed(2));//here
+                alert(`${brand} ${type}: ${amount} &euro; ${amount * price}`);
             }
         },
-        updatePrices() {
-            this.motorcycles.forEach((motorcycle) => {
-                motorcycle.previousPrice = motorcycle.price;
-                motorcycle.price += (Math.random() - 0.5) * 2;
-                if (motorcycle.price < 0) {
-                    motorcycle.price = 0;
-                }
-            });
-        },
+        getProducts() {
+                axios.get('http://localhost/motorcycles')
+                .then((result) => {
+                    this.motorcycles = result.data;
+                    console.log(this.motorcycles);
+                })
+                .catch(error => console.log(error))
+            }
     },  
     mounted() {
-        setInterval(() => {
-            this.updatePrices();
-        }, 2500);
+        this.getProducts();
     },
 };
 </script>

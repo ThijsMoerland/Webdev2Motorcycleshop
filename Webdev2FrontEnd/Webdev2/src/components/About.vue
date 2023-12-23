@@ -1,7 +1,7 @@
 <template>
     <div>
         <ul>
-            <li v-for="product in products" :key="product.id">{{ product.name }}</li>
+            <li v-for="product in products" :key="product.id">{{ product.brand }}</li>
         </ul>
     </div>
 </template>
@@ -17,7 +17,7 @@
         },
         methods: {
             geProducts() {
-                axios.get('http://localhost/products')
+                axios.get('http://localhost/motorcycles')
                 .then((result) => {
                     this.products = result.data;
                     console.log(this.products);
