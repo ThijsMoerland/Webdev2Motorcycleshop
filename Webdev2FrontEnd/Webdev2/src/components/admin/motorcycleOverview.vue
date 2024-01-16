@@ -49,7 +49,7 @@
 import axios from 'axios';
 
 export default {
-    name: "MotorcycleList",
+    name: "MotorcycleOverview",
     data() {
         console.log();
         return {
@@ -60,17 +60,6 @@ export default {
         editMotorcycle(id) {
             this.$router.push(`/editMotorcycle/${id}`);
         },
-        
-        // deleteMotorcycle(id) {
-        //     if (confirm("Are you sure you want to delete this motorcycle?")) {
-        //         axios.delete('http://localhost/motorcycles/8')
-        //             .then((result) => {
-        //                 console.log(result);
-        //                 // Remove the deleted motorcycle from the motorcycles array
-        //             })
-        //             .catch(error => console.log(error));
-        //     }
-        // },
         getMotorcycles() {
             axios.get('http://localhost/motorcycles')
             .then((result) => {
@@ -80,14 +69,15 @@ export default {
             .catch(error => console.log(error))
         },
         deleteMotorcycle(id) {
-            axios
+            if (confirm("Are you sure you want to delete this motorcycle?")){
+                axios
                 .delete("http://localhost/motorcycles/" + id)
-                .then((result) => {
-                    console.log('test')
-                    console.log(result);
-                    // this.motorcycles = this.motorcycles.filter(motorcycle => motorcycle.id !== id);
+                .then(() => {
+                    this.motorcycles = this.motorcycles.filter(motorcycle => motorcycle.id !== id);
                 })
                 .catch((error) => console.error("Error: ", error));
+            }
+            
         },
     },  
     mounted() {

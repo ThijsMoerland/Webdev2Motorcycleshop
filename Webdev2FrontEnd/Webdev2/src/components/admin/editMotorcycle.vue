@@ -44,7 +44,7 @@
                             <input type="checkbox" id="sold" name="sold"  v-model="motorcycle.sold">
                             <label for="sold">&nbsp;Sold</label>
                         </div>
-                    <button type="submit" class="btn btn-primary">Add Motorcycle</button>
+                    <button type="submit" class="btn btn-warning" @click="updateMotorcycle()">Edit Motorcycle</button>
                 </form>
             </div>
         </div>
@@ -55,9 +55,13 @@
 import axios from 'axios';
 export default {
     name: "CreateMotorcycle",
+    props: {
+        id: Number,
+    },
     data() {
         return {
             motorcycle: {
+                id: this.id,
                 brand: "",
                 type: "",
                 constructionYear: null,
@@ -72,22 +76,31 @@ export default {
         };
     },
     methods: {
-        addMotorcycle() {
+        getMotorcycle() {
             axios
-                .post("http://localhost/motorcycles/", this.motorcycle)
+                .get("http://localhost/motorcycles/"+ this.id)
                 .then((result) => {
-                    console.log(result);
+                    this.motorcycle = result.data;
+                    console.log(this.motorcycle);
                 })
                 .catch((error) => {
                     console.log(error);
                 });
-
-            // Logic to add the motorcycle
-            alert("Motorcycle added!");
-            // this.$router.push("/"); // Replace "/home" with the actual path to your home component
         },
+        updateMotorcycle(){
+            axios
+                .put("http://localhost/motorcycles/"+ this.id, this.motorcycle)
+                .then(() => {
+                    this.$router.push('/motorcycleOverview');
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
     },
-    mounted() {},
+    mounted() {
+        this.getMotorcycle();
+    },
 };
 </script>
 
