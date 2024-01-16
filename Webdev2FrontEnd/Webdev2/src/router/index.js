@@ -2,7 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import MotorcycleList from '../components/MotorcycleList.vue';
 import About from '../components/About.vue';
-import CreateMotorcycle from '../components//admin/createMotorcycle.vue';
+import CreateMotorcycle from '../components/admin/createMotorcycle.vue';
+import MotorcycleOverview from '../components/admin/motorcycleOverview.vue';
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,6 +12,8 @@ const router = createRouter({
     { path: '/',  name: 'home', component: MotorcycleList },
     { path: '/about',  name: 'aboutpage', component: About },
     { path: '/createMotorcycle',  name: 'createMotorcycle', component: CreateMotorcycle },
+    { path: '/motorcycleOverview',  name: 'motorcycleOverview', component: MotorcycleOverview },
+
   ]
 })
 

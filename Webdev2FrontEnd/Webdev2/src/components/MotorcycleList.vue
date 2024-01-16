@@ -26,7 +26,7 @@ export default {
                 alert(`${brand} ${type}: ${amount} &euro; ${amount * price}`);
             }
         },
-        getProducts() {
+        getMotorcycles() {
                 axios.get('http://localhost/motorcycles')
                 .then((result) => {
                     this.motorcycles = result.data;
@@ -36,7 +36,7 @@ export default {
             }
     },  
     mounted() {
-        this.getProducts();
+        this.getMotorcycles();
     },
 };
 </script>
