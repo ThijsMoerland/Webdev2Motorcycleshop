@@ -4,6 +4,8 @@ namespace Controllers;
 
 use Exception;
 use Services\MotorcycleService;
+use Firebase\JWT\JWT;
+use \Firebase\JWT\Key;
 
 class MotorcycleController extends Controller
 {
@@ -43,6 +45,11 @@ class MotorcycleController extends Controller
 
     public function create()
     {
+        $decodedJWT = $this->checkForJwt();
+        if(!$decodedJWT && $decodedJWT->data->role != "admin" && $decodedJWT->data->role != "root") {
+            $this->respondWithError(401, "Unauthorized");
+            return;
+        }
         try {
             $motorcycle = $this->createObjectFromPostedJson("Models\Motorcycle");
 
@@ -58,6 +65,11 @@ class MotorcycleController extends Controller
 
     public function update($id)
     {
+        $decodedJWT = $this->checkForJwt();
+        if(!$decodedJWT && $decodedJWT->data->role != "admin" && $decodedJWT->data->role != "root") {
+            $this->respondWithError(401, "Unauthorized");
+            return;
+        }
         try {
             $motorcycle = $this->createObjectFromPostedJson("Models\Motorcycle");
 
@@ -73,6 +85,11 @@ class MotorcycleController extends Controller
 
     public function delete($id)
     {
+        $decodedJWT = $this->checkForJwt();
+        if(!$decodedJWT && $decodedJWT->data->role != "admin" && $decodedJWT->data->role != "root") {
+            $this->respondWithError(401, "Unauthorized");
+            return;
+        }
         try {
             $this->service->delete($id);
             $this->respond(true);

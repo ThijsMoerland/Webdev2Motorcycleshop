@@ -21,7 +21,7 @@ class Controller {
        $jwt = $arr[1];
 
        // Decode JWT
-       $secret_key = "YOUR_SECRET_KEY";
+       $secret_key = "SECRET_KEY";
 
        if ($jwt) {
            try {
@@ -31,7 +31,7 @@ class Controller {
                return $decoded;
            } catch (Exception $e) {
                $this->respondWithError(401, $e->getMessage());
-               return;
+               return false;
            }
        }
    }
