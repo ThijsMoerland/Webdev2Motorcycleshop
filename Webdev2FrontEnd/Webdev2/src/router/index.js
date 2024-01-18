@@ -5,6 +5,7 @@ import About from '../components/About.vue';
 import CreateMotorcycle from '../components/admin/createMotorcycle.vue';
 import MotorcycleOverview from '../components/admin/motorcycleOverview.vue';
 import EditMotorcycle from '../components/admin/editMotorcycle.vue';
+import AdminLogin from '../components/admin/adminLogin.vue';
 
 
 const router = createRouter({
@@ -14,6 +15,7 @@ const router = createRouter({
     { path: '/about',  name: 'aboutpage', component: About },
     { path: '/createMotorcycle',  name: 'createMotorcycle', component: CreateMotorcycle },
     { path: '/motorcycleOverview',  name: 'motorcycleOverview', component: MotorcycleOverview },
+    { path: '/adminLogin',  name: 'adminLogin', component: AdminLogin },
     { path: '/editMotorcycle/:id', component: EditMotorcycle, props: true  }
   ]
 })

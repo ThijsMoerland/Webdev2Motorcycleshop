@@ -26,6 +26,12 @@ class Controller {
        if ($jwt) {
            try {
                $decoded = JWT::decode($jwt, new Key($secret_key, 'HS256'));
+
+               $current_time = time();
+               if ($decoded->exp < $current_time) {
+                   $this->respondWithError(401, "Token expired");
+                   return false;
+               }
                // username is now found in
                // echo $decoded->data->username;
                return $decoded;

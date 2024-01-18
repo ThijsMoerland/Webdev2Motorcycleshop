@@ -61,7 +61,7 @@ export default {
             this.$router.push(`/editMotorcycle/${id}`);
         },
         getMotorcycles() {
-            axios.get('http://localhost/motorcycles')
+            axios.get('/motorcycles')
             .then((result) => {
                 this.motorcycles = result.data;
                 console.log(this.motorcycles);
@@ -71,7 +71,7 @@ export default {
         deleteMotorcycle(id) {
             if (confirm("Are you sure you want to delete this motorcycle?")){
                 axios
-                .delete("http://localhost/motorcycles/" + id)
+                .delete("/motorcycles/" + id)
                 .then(() => {
                     this.motorcycles = this.motorcycles.filter(motorcycle => motorcycle.id !== id);
                 })

@@ -52,9 +52,9 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '../../axios-auth';
 export default {
-    name: "CreateMotorcycle",
+    name: "EditMotorcycle",
     props: {
         id: Number,
     },
@@ -78,7 +78,7 @@ export default {
     methods: {
         getMotorcycle() {
             axios
-                .get("http://localhost/motorcycles/"+ this.id)
+                .get("/motorcycles/"+ this.id)
                 .then((result) => {
                     this.motorcycle = result.data;
                     console.log(this.motorcycle);
@@ -89,8 +89,9 @@ export default {
         },
         updateMotorcycle(){
             axios
-                .put("http://localhost/motorcycles/"+ this.id, this.motorcycle)
+                .put("/motorcycles/"+ this.id, this.motorcycle)
                 .then(() => {
+                    alert("Motorcycle updated!");
                     this.$router.push('/motorcycleOverview');
                 })
                 .catch((error) => {

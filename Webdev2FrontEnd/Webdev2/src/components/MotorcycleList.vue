@@ -7,7 +7,7 @@
 
 <script>
 import MotorcycleItem from './MotorcycleItem.vue';
-import axios from 'axios';
+import axios from '../axios-auth';
 
 export default {
     name: "MotorcycleList",
@@ -27,10 +27,9 @@ export default {
             }
         },
         getMotorcycles() {
-                axios.get('http://localhost/motorcycles')
+                axios.get('/motorcycles')
                 .then((result) => {
                     this.motorcycles = result.data;
-                    console.log(this.motorcycles);
                 })
                 .catch(error => console.log(error))
             }

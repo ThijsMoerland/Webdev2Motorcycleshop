@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '../../axios-auth';
 export default {
     name: "CreateMotorcycle",
     data() {
@@ -74,16 +74,16 @@ export default {
     methods: {
         addMotorcycle() {
             axios
-                .post("http://localhost/motorcycles/", this.motorcycle)
-                .then((result) => {
-                    console.log(result);
+                .post("/motorcycles/", this.motorcycle)
+                .then(() => {
+                    alert("Motorcycle added!");
+                    this.$router.push(`/`);
                 })
                 .catch((error) => {
-                    console.log(error);
+                    alert(error.response.statusText)
                 });
 
             // Logic to add the motorcycle
-            alert("Motorcycle added!");
             // this.$router.push("/"); // Replace "/home" with the actual path to your home component
         },
     },

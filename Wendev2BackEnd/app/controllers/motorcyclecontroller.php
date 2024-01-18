@@ -46,7 +46,7 @@ class MotorcycleController extends Controller
     public function create()
     {
         $decodedJWT = $this->checkForJwt();
-        if(!$decodedJWT && $decodedJWT->data->role != "admin" && $decodedJWT->data->role != "root") {
+        if(!$decodedJWT || $decodedJWT->data->role != "admin" && $decodedJWT->data->role != "root") {
             $this->respondWithError(401, "Unauthorized");
             return;
         }
