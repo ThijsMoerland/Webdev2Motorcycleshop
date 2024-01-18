@@ -14,6 +14,8 @@ $router = new \Bramus\Router\Router();
 $router->setNamespace('Controllers');
 
 // routes for the articles endpoint
+$router->post('/users/login', 'UserController@login');
+
 $router->get('/motorcycles', 'MotorcycleController@getAll');
 $router->get('/motorcycles/(\d+)', 'MotorcycleController@getOne');
 $router->put('/motorcycles/(\d+)', 'MotorcycleController@update');
