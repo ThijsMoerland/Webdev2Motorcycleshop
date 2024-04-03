@@ -86,8 +86,16 @@ export default {
             // Logic to add the motorcycle
             // this.$router.push("/"); // Replace "/home" with the actual path to your home component
         },
+        checkJWT() {
+            if (axios.defaults.headers.common['Authorization'] === null || axios.defaults.headers.common['Authorization'] === undefined) {
+                alert("You are not logged in!");
+                this.$router.push('/adminLogin');
+            }
+        }
     },
-    mounted() {},
+    mounted() {
+        this.checkJWT();
+    },
 };
 </script>
 

@@ -11,7 +11,7 @@ class Controller {
         // Check for token header
         if(!isset($_SERVER['HTTP_AUTHORIZATION'])) {
            $this->respondWithError(401, "No token provided");
-           return;
+           die();
        }
 
        // Read JWT from header

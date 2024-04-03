@@ -95,11 +95,18 @@ export default {
                     this.$router.push('/motorcycleOverview');
                 })
                 .catch((error) => {
-                    console.log(error);
+                    alert(error.response.statusText);
                 });
+        },
+        checkJWT() {
+            if (axios.defaults.headers.common['Authorization'] === null || axios.defaults.headers.common['Authorization'] === undefined) {
+                alert("You are not logged in!");
+                this.$router.push('/adminLogin');
+            }
         }
     },
     mounted() {
+        this.checkJWT();
         this.getMotorcycle();
     },
 };

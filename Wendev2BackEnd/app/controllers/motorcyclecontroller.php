@@ -68,7 +68,7 @@ class MotorcycleController extends Controller
         $decodedJWT = $this->checkForJwt();
         if(!$decodedJWT && $decodedJWT->data->role != "admin" && $decodedJWT->data->role != "root") {
             $this->respondWithError(401, "Unauthorized");
-            return;
+            die();
         }
         try {
             $motorcycle = $this->createObjectFromPostedJson("Models\Motorcycle");
@@ -88,7 +88,7 @@ class MotorcycleController extends Controller
         $decodedJWT = $this->checkForJwt();
         if(!$decodedJWT && $decodedJWT->data->role != "admin" && $decodedJWT->data->role != "root") {
             $this->respondWithError(401, "Unauthorized");
-            return;
+            die();
         }
         try {
             $this->service->delete($id);

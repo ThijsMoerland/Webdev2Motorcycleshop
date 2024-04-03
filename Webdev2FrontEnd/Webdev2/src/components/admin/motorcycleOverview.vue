@@ -41,12 +41,11 @@
             </tbody>
         </table>
         
-        <MotorcycleItem v-for="motorcycle in motorcycles" :key="motorcycle.id" :brand="motorcycle.brand" :type="motorcycle.type" :price="motorcycle.price" :constructionYear="motorcycle.constructionYear" :power="motorcycle.power" :mass="motorcycle.mass" :engine="motorcycle.engine" :accessories="motorcycle.accessories" :imgUrl="motorcycle.img_url" :sold="motorcycle.sold" @buy="buyItem"></MotorcycleItem>
     </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '../../axios-auth';
 
 export default {
     name: "MotorcycleOverview",
@@ -61,13 +60,13 @@ export default {
             this.$router.push(`/editMotorcycle/${id}`);
         },
         getMotorcycles() {
-            axios.get('/motorcycles')
-            .then((result) => {
-                this.motorcycles = result.data;
-                console.log(this.motorcycles);
-            })
-            .catch(error => console.log(error))
-        },
+                axios.get('/motorcycles')
+                .then((result) => {
+                    this.motorcycles = result.data;
+                    console.log(this.motorcycles)
+                })
+                .catch(error => console.log(error))
+            },
         deleteMotorcycle(id) {
             if (confirm("Are you sure you want to delete this motorcycle?")){
                 axios
@@ -75,12 +74,19 @@ export default {
                 .then(() => {
                     this.motorcycles = this.motorcycles.filter(motorcycle => motorcycle.id !== id);
                 })
-                .catch((error) => console.error("Error: ", error));
+                .catch((error) => alert(error.response.statusText));
             }
             
         },
+        checkJWT() {
+            if (axios.defaults.headers.common['Authorization'] === null || axios.defaults.headers.common['Authorization'] === undefined) {
+                alert("You are not logged in!");
+                this.$router.push('/adminLogin');
+            }
+        }
     },  
     mounted() {
+        this.checkJWT();
         this.getMotorcycles();
     },
 };

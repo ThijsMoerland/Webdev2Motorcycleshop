@@ -17,7 +17,7 @@
                 >
                     &euro; {{ price }}
                 </span>
-                <button class="btn btn-primary" @click="$emit('buy', brand, type, amount, price)">Buy</button>
+                <button class="btn btn-primary" @click="$emit('buy', brand, type, price)">Buy</button>
             </div>
         </div>
     </div>

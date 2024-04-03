@@ -17,7 +17,7 @@ class UserController extends Controller
     }
 
     public function login() {
-
+        
         // read user data from request body
         $postedUser = $this->createObjectFromPostedJson("Models\User");
 

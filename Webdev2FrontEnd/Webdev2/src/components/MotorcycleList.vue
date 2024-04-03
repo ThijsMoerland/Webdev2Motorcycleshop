@@ -21,15 +21,15 @@ export default {
         };
     },
     methods: {
-        buyItem(brand, type, amount, price) {
-            if(amount > 0){
-                alert(`${brand} ${type}: ${amount} &euro; ${amount * price}`);
-            }
+        buyItem(brand, type, price) { //here
+            alert(`${brand} ${type}: &euro; ${price}`);
+
         },
         getMotorcycles() {
                 axios.get('/motorcycles')
                 .then((result) => {
                     this.motorcycles = result.data;
+                    console.log(this.motorcycles);
                 })
                 .catch(error => console.log(error))
             }

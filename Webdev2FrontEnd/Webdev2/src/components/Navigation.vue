@@ -12,15 +12,18 @@
         <li class="nav-item">
             <router-link class="nav-link text-white" to="/createMotorcycle">(admin)Create Motorcycle</router-link>
         </li>
-        <li class="nav-item">
-            <router-link class="nav-link text-white" to="/login">Login / Register</router-link>
-        </li>
     </ul>
 </template>
 
 <script>
+    import axios from '../axios-auth';
     export default {
         name: "NavigationBar",
+        data() {
+            return {
+                isAuthenticated: false // Set the initial value to false
+            }
+        },
     }
     
 </script>

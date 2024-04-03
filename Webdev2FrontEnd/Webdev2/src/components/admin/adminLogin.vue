@@ -39,13 +39,17 @@ export default {
         password: this.password
       })
       .then(response => {
+        if(response.data.jwt === undefined) {
+          alert("Login failed!");
+          return;
+        }
         axios.defaults.headers.common['Authorization'] = "Bearer " + response.data.jwt;
         alert("Login successful!");
         this.$router.push(`/motorcycleOverview`);
       })
       .catch(error => {
         // Handle the error
-        console.error(error);
+        alert(error.response.statusText);
       });
     }
   }
