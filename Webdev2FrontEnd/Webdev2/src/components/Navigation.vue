@@ -19,11 +19,6 @@
     import axios from '../axios-auth';
     export default {
         name: "NavigationBar",
-        data() {
-            return {
-                isAuthenticated: false // Set the initial value to false
-            }
-        },
     }
     
 </script>

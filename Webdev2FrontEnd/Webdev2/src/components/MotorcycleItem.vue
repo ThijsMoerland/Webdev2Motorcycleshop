@@ -17,7 +17,7 @@
                 >
                     &euro; {{ price }}
                 </span>
-                <button class="btn btn-primary" @click="$emit('buy', brand, type, price)">Buy</button>
+                <button class="btn btn-primary" @click="$emit('buy', id)">Buy</button>
             </div>
         </div>
     </div>
@@ -27,6 +27,7 @@
 export default {
     name: "MotorcycleItem",
     props: {
+        id: Number,
         brand: String,
         type: String,
         price: Number,

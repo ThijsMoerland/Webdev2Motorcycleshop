@@ -1,7 +1,7 @@
 <template>
     <h1 class="pt-5">Motorcycles</h1>
     <div class="row">
-        <MotorcycleItem v-for="motorcycle in motorcycles" :key="motorcycle.id" :brand="motorcycle.brand" :type="motorcycle.type" :price="motorcycle.price" :constructionYear="motorcycle.constructionYear" :power="motorcycle.power" :mass="motorcycle.mass" :engine="motorcycle.engine" :accessories="motorcycle.accessories" :imgUrl="motorcycle.img_url" :sold="motorcycle.sold" @buy="buyItem"></MotorcycleItem>
+        <MotorcycleItem v-for="motorcycle in motorcycles" :key="motorcycle.id" :id="motorcycle.id" :brand="motorcycle.brand" :type="motorcycle.type" :price="motorcycle.price" :constructionYear="motorcycle.constructionYear" :power="motorcycle.power" :mass="motorcycle.mass" :engine="motorcycle.engine" :accessories="motorcycle.accessories" :imgUrl="motorcycle.img_url" :sold="motorcycle.sold" @buy="buyItem"></MotorcycleItem>
     </div>
 </template>
 
@@ -21,9 +21,8 @@ export default {
         };
     },
     methods: {
-        buyItem(brand, type, price) { //here
-            alert(`${brand} ${type}: &euro; ${price}`);
-
+        buyItem(id) {
+            this.$router.push(`/ProcessOrder/${id}`);
         },
         getMotorcycles() {
                 axios.get('/motorcycles')
