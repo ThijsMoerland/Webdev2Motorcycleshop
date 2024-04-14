@@ -14,22 +14,22 @@
                     </div>
                     <div class="form-group">
                         <label for="constructionYear">Construction Year:</label>
-                        <input type="date" id="constructionYear" class="form-control" v-model="motorcycle.constructionYear" required>
+                        <input type="date" id="constructionYear" class="form-control" format="yyyy-mm-dd" v-model="motorcycle.constructionYear" required>
                     </div>
                     <div class="form-group">
-                        <label for="power">Power:</label>
+                        <label for="power">Power (KW):</label>
                         <input type="number" id="power" class="form-control" v-model="motorcycle.power" required>
                     </div>
                     <div class="form-group">
-                        <label for="power">Price:</label>
+                        <label for="power">Price (Euro):</label>
                         <input type="number" id="price" class="form-control" v-model="motorcycle.price" required>
                     </div>
                     <div class="form-group">
-                        <label for="mass">Mass:</label>
+                        <label for="mass">Mass (KG):</label>
                         <input type="number" id="mass" class="form-control" v-model="motorcycle.mass" required>
                     </div>
                     <div class="form-group">
-                        <label for="engine">Engine:</label>
+                        <label for="engine">Engine (CC):</label>
                         <input type="number" id="engine" class="form-control" v-model="motorcycle.engine" required>
                     </div>
                     <div class="form-group">

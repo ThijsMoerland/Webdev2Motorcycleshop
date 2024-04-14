@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Dec 22, 2023 at 01:50 PM
--- Server version: 11.1.2-MariaDB-1:11.1.2+maria~ubu2204
--- PHP Version: 8.2.11
+-- Gegenereerd op: 14 apr 2024 om 20:02
+-- Serverversie: 11.2.2-MariaDB-1:11.2.2+maria~ubu2204
+-- PHP-versie: 8.2.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `motorcycles`
+-- Tabelstructuur voor tabel `motorcycles`
 --
 
 CREATE TABLE `motorcycles` (
@@ -42,35 +42,67 @@ CREATE TABLE `motorcycles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `motorcycles`
+-- Gegevens worden geëxporteerd voor tabel `motorcycles`
 --
 
 INSERT INTO `motorcycles` (`id`, `brand`, `type`, `constructionYear`, `price`, `power`, `mass`, `engine`, `accessories`, `img_url`, `sold`) VALUES
-(1, 'Honda', 'cb650fa', '2022-01-01', 12000, 150, 200, 1000, 'ABS', 'honda_sport.jpg', 0),
-(2, 'Yamaha', 'R1', '2023-01-01', 12000, 150, 200, 1000, 'ABS, LED Lights', 'https://example.com/motorcycle.jpg', 1),
-(3, 'Kawasaki', 'z300', '2022-04-31', 11000, 120, 180, 800, 'ABS', 'kawasaki_naked.jpg', 0),
-(4, 'Ducati', 'monster 696', '2023-01-01', 18000, 200, 220, 1100, 'ABS', 'ducati_sport_touring.jpg', 0),
-(5, 'Harley-Davidson', 'Nightster', '2021-12-23', 2500.95, 160, 300, 1500, 'ABS', 'harley_chopper.jpg', 1);
+(1, 'Honda', 'cb650fa', '2022-01-01', 12000, 150, 200, 1000, 'ABS', 'https://i0.wp.com/www.asphaltandrubber.com/wp-content/uploads/2014/04/2014-Honda-CB650F-review-14.jpg', 0),
+(2, 'Yamaha', 'R1', '2023-01-02', 12000, 150, 200, 1000, 'ABS, LED Lights', 'https://www.goedhartmotoren.nl/media/catalog/product/cache/6cebcc324ef3e274e76c132017c1932e/0/0/00002441414141474F93a_229e.jpg', 0),
+(3, 'Kawasaki', 'z300', '2022-04-31', 11000, 120, 180, 300, 'ABS', 'https://storage.kawasaki.eu/public/kawasaki.eu/en-EU/model/15ER300B_44SGRNDRF2CG_C_002.png', 0),
+(4, 'Ducati', 'monster 696', '2023-01-01', 18000, 200, 220, 1100, 'ABS', 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Ducati_Monster_696_2013.jpg/1200px-Ducati_Monster_696_2013.jpg', 0);
+
+-- --------------------------------------------------------
 
 --
--- Indexes for dumped tables
+-- Tabelstructuur voor tabel `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `role` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `role`) VALUES
+(1, 'root', '$2y$10$Scvhg6AIvnY8piqr8ChFFuMCekrEX86N/gx8y32oLxAwr52mmncbi', 'root@root.root', 'root');
+
+--
+-- Indexen voor geëxporteerde tabellen
 --
 
 --
--- Indexes for table `motorcycles`
+-- Indexen voor tabel `motorcycles`
 --
 ALTER TABLE `motorcycles`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Indexen voor tabel `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT voor geëxporteerde tabellen
 --
 
 --
--- AUTO_INCREMENT for table `motorcycles`
+-- AUTO_INCREMENT voor een tabel `motorcycles`
 --
 ALTER TABLE `motorcycles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT voor een tabel `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

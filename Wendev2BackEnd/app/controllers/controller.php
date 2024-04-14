@@ -30,17 +30,24 @@ class Controller {
                $current_time = time();
                if ($decoded->exp < $current_time) {
                    $this->respondWithError(401, "Token expired");
-                   return false;
+                   die();
                }
-               // username is now found in
-               // echo $decoded->data->username;
                return $decoded;
            } catch (Exception $e) {
                $this->respondWithError(401, $e->getMessage());
-               return false;
+               die();
            }
        }
    }
+
+   public function checkJwtRole($role) {
+       $decodedJWT = $this->checkForJwt();
+       if(!$decodedJWT || $decodedJWT->data->role != $role) {
+           $this->respondWithError(401, "Unauthorized");
+           die();
+       }
+       return true;
+    }
 
     function respond($data) {
         $this->respondWithCode(200, $data);

@@ -16,6 +16,10 @@ class MotorcycleService {
         return $this->repository->getAll($offset, $limit);
     }
 
+    public function getAllAvailableMotorcycles($offset = NULL, $limit = NULL) {
+        return $this->repository->getAllAvailableMotorcycles($offset, $limit);
+    }
+
     public function getOne($id) {
         return $this->repository->getOne($id);
     }

@@ -2,8 +2,7 @@
   <div class="pt-5 row justify-content-center">
     <div class="col-md-6">
       <div class="form-container h-100">
-        <h2 class="form-title">User Information Form</h2>
-        <form @submit="submitForm">
+        <h2 class="form-title">Shipping information</h2>
           <div class="form-group">
             <label for="firstName">First Name:</label>
             <input type="text" class="form-control" id="firstName" name="firstName" required v-model="firstName">
@@ -28,8 +27,7 @@
             <label for="postalCode">Postal Code:</label>
             <input type="text" class="form-control" id="postalCode" name="postalCode" required v-model="postalCode">
           </div>
-          <button type="submit" class="mt-3 btn btn-primary">Buy Now</button>
-        </form>
+            <button type="submit" class="mt-3 btn btn-primary" @click="setMotorcycleToPaid">Buy Now</button>
       </div>
     </div>
     <div class="col-md-6">
@@ -78,17 +76,22 @@ export default {
         };
     },
     methods: {
-        submitForm() {
-            alert('Order submitted');
-            
-        },
         getMotorcycle() {
-                axios.get('/motorcycles/' + this.id)
-                .then((result) => {
-                    this.motorcycle = result.data;
-                })
-                .catch(error => console.log(error))
-            },
+            axios.get('/motorcycles/' + this.id)
+            .then((result) => {
+                this.motorcycle = result.data;
+            })
+            .catch(error => console.log(error))
+        },
+        setMotorcycleToPaid() {
+            axios.put('/motorcycles/' + this.id + '/sold')
+            .then((result) => {
+              alert(`Your ${this.motorcycle.brand} ${this.motorcycle.type} has been shipped to ${this.streetName}, ${this.city}, ${this.postalCode}`);
+              this.$router.push('/');
+            })
+            .catch(error => alert(error))
+        }
+
 
     },
     mounted() {

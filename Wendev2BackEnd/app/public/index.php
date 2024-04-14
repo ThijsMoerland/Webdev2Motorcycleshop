@@ -17,8 +17,10 @@ $router->setNamespace('Controllers');
 $router->post('/users/login', 'UserController@login');
 
 $router->get('/motorcycles', 'MotorcycleController@getAll');
+$router->get('/motorcycles/available', 'MotorcycleController@getAllAvailableMotorcycles');
 $router->get('/motorcycles/(\d+)', 'MotorcycleController@getOne');
 $router->put('/motorcycles/(\d+)', 'MotorcycleController@update');
+$router->put('/motorcycles/(\d+)/sold', 'MotorcycleController@setMotorcycleToSold');
 $router->post('/motorcycles' , 'MotorcycleController@create');
 $router->delete('/motorcycles/(\d+)', 'MotorcycleController@delete');
 

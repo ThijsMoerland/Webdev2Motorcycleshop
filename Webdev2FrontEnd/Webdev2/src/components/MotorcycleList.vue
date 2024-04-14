@@ -25,10 +25,9 @@ export default {
             this.$router.push(`/ProcessOrder/${id}`);
         },
         getMotorcycles() {
-                axios.get('/motorcycles')
+                axios.get('/motorcycles/available')
                 .then((result) => {
                     this.motorcycles = result.data;
-                    console.log(this.motorcycles);
                 })
                 .catch(error => console.log(error))
             }
